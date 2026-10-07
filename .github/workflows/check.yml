@@ -25,18 +25,31 @@ jobs:
         run: cp Casks/*.rb "$(brew --repository sigmauno/tap)/Casks/"
       - name: Check style and online metadata
         run: |
-          brew style --cask sigmauno/tap/sigma-dock-preview
-          brew audit --cask --online --except=github_prerelease_version sigmauno/tap/sigma-dock-preview
+          for file in Casks/*.rb; do
+            token="$(basename "$file" .rb)"
+            brew style --cask "sigmauno/tap/$token"
+            if [[ "$token" == sigma-dock-preview ]]; then
+              brew audit --cask --online --except=github_prerelease_version "sigmauno/tap/$token"
+            else
+              brew audit --cask --online "sigmauno/tap/$token"
+            fi
+          done
       - name: Exercise install, CLI, daemon and UI closure
         run: |
-          brew install --cask sigmauno/tap/sigma-dock-preview
-          sdk --help
-          app='/Applications/SigmaDock.app'
           curl -fsSL 'https://raw.githubusercontent.com/SigmaUno/sigma-dock/858b98ce5b6a/scripts/macos_bundle_smoke.py' -o "$RUNNER_TEMP/bundle-smoke.py"
-          python3 "$RUNNER_TEMP/bundle-smoke.py" "$app"
-          brew upgrade --cask sigmauno/tap/sigma-dock-preview
-          brew reinstall --cask sigmauno/tap/sigma-dock-preview
-          sdk --help
+          for file in Casks/*.rb; do
+            token="$(basename "$file" .rb)"
+            brew install --cask "sigmauno/tap/$token"
+            sdk --help
+            python3 "$RUNNER_TEMP/bundle-smoke.py" '/Applications/SigmaDock.app'
+            brew upgrade --cask "sigmauno/tap/$token"
+            brew reinstall --cask "sigmauno/tap/$token"
+            sdk --help
+            brew uninstall --cask "sigmauno/tap/$token"
+          done
       - name: Uninstall
         if: always()
-        run: brew uninstall --cask sigmauno/tap/sigma-dock-preview || true
+        run: |
+          for file in Casks/*.rb; do
+            brew uninstall --cask "sigmauno/tap/$(basename "$file" .rb)" || true
+          done
