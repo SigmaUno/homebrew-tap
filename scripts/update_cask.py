@@ -65,7 +65,7 @@ def render(channel, asset, version, commit, digest):
   end
 
   conflicts_with cask: "sigmauno/tap/{other}"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "SigmaDock.app"
   binary "#{{appdir}}/SigmaDock.app/Contents/MacOS/sdk"

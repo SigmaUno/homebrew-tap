@@ -33,7 +33,7 @@ Run on a Mac with Python 3, `gh` access to the public upstream, Xcode command-li
 
 ```sh
 python3 scripts/update_cask.py --tag vVERSION --channel stable
-brew style --cask Casks/sigma-dock.rb
+brew style --cask sigmauno/tap/sigma-dock
 brew audit --cask --online sigmauno/tap/sigma-dock
 ```
 

@@ -12,7 +12,7 @@ cask "sigma-dock-preview" do
   end
 
   conflicts_with cask: "sigmauno/tap/sigma-dock"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "SigmaDock.app"
   binary "#{appdir}/SigmaDock.app/Contents/MacOS/sdk"
