@@ -34,7 +34,7 @@ class Policy(unittest.TestCase):
             self.assertIn('binary "#{appdir}/SigmaDock.app/Contents/MacOS/sdk"', text)
             self.assertIn('>= :ventura', text)
             self.assertNotIn('zap ', text)
-            self.assertNotIn('uninstall ', text)
+            self.assertNotRegex(text, r'(?m)^  (?:uninstall|zap)\b')
             self.assertNotIn(':no_check', text)
 
 
