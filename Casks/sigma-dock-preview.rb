@@ -2,7 +2,7 @@ cask "sigma-dock-preview" do
   version "0.1.1,858b98ce5b6a"
   sha256 "bdd78d16de1e9099fd426d9fdc1de0ecca25db251f08c54c090adbf438403198"
 
-  url "https://github.com/SigmaUno/sigma-dock/releases/download/macos-858b98ce5b6a/SigmaDock-0.1.1-858b98ce5b6a-universal-test.dmg"
+  url "https://github.com/SigmaUno/sigma-dock/releases/download/macos-#{version.csv.second}/SigmaDock-#{version.csv.first}-#{version.csv.second}-universal-test.dmg"
   name "SigmaDock Preview"
   desc "Native workspace for parallel coding agents"
   homepage "https://sigmadock.dev/"

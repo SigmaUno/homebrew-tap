@@ -25,7 +25,7 @@ jobs:
       - name: Check style and online metadata
         run: |
           brew style --cask sigmauno/tap/sigma-dock-preview
-          brew audit --cask --online sigmauno/tap/sigma-dock-preview
+          brew audit --cask --online --except=github_prerelease_version sigmauno/tap/sigma-dock-preview
       - name: Exercise install, CLI, daemon and UI closure
         run: |
           brew install --cask sigmauno/tap/sigma-dock-preview

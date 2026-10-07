@@ -48,6 +48,7 @@ def render(channel, asset, version, commit, digest):
     token = 'sigma-dock' if channel == 'stable' else 'sigma-dock-preview'
     other = 'sigma-dock-preview' if channel == 'stable' else 'sigma-dock'
     display_version = version if channel == 'stable' else version + ',' + commit
+    url = asset['browser_download_url'].replace(version, '#{version}' if channel == 'stable' else '#{version.csv.first}').replace(commit, '#{version.csv.second}' if channel == 'preview' else commit)
     caveat = 'Git and an agent CLI must be installed separately.'
     if channel == 'preview':
         caveat += '\n    This development preview is ad-hoc signed and is not notarized.'
@@ -55,7 +56,7 @@ def render(channel, asset, version, commit, digest):
   version "{display_version}"
   sha256 "{digest}"
 
-  url "{asset['browser_download_url']}"
+  url "{url}"
   name "SigmaDock{' Preview' if channel == 'preview' else ''}"
   desc "Native workspace for parallel coding agents"
   homepage "https://sigmadock.dev/"

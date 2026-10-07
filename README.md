@@ -44,3 +44,5 @@ For an explicitly separate preview: `python3 scripts/update_cask.py --tag macos-
 CI checks the cask syntax/style and exercises install, bundled daemon launch, CLI access, upgrade/reinstall and uninstall on Apple silicon and Intel. Check that workflow before merging updates. A true version-to-version stable upgrade and browser-download Gatekeeper qualification remain release checks once production assets exist.
 
 Cask syntax follows the [Homebrew Cask Cookbook](https://docs.brew.sh/Cask-Cookbook).
+
+Preview audits explicitly exclude only `github_prerelease_version`: prereleases are the purpose of that channel. Stable audits have no such exclusion. Version interpolation in URLs preserves the pinned version/commit and explicit checksums.
