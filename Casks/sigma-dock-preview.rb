@@ -1,6 +1,6 @@
 cask "sigma-dock-preview" do
-  version "0.1.1,858b98ce5b6a"
-  sha256 "bdd78d16de1e9099fd426d9fdc1de0ecca25db251f08c54c090adbf438403198"
+  version "0.1.2,656f3a4b3b36"
+  sha256 "20d974d83a625d51d1e2a272c35b8e1aca5f6364eb98c6698cf5b4a8dcc0f255"
 
   url "https://github.com/SigmaUno/sigma-dock/releases/download/macos-#{version.csv.second}/SigmaDock-#{version.csv.first}-#{version.csv.second}-universal-test.dmg"
   name "SigmaDock Preview"
